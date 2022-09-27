@@ -8,22 +8,22 @@ use App\Models\Product;
 use App\Models\Retailer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ExampleTest extends TestCase
+class ProductTest extends TestCase
 {
-    /** @test */
-
     use RefreshDatabase;
 
+
+    /** @test */
     public function it_checks_products_for_retailers()
     {
         // $response = $this->get('/');
         // $response->assertStatus(200);
 
         $switch = Product::create(['name' => 'Nintendo Switch']);
-        
+
         $bestBuy = Retailer::create(['name' => 'Best Buy']);
 
-        $this->assertFalse($switch->inStock());
+        $this->assertFalse($switch->in_stock());
         //$bestBuy->haveSttock($swtich);
 
         $stock = new Stock([
@@ -34,7 +34,7 @@ class ExampleTest extends TestCase
         ]);
 
         $bestBuy->addStock($switch, $stock);
-        
-        $this->assertTrue($switch->inStock());
+
+        $this->assertTrue($switch->in_stock());
     }
 }
