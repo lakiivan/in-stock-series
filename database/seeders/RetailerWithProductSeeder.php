@@ -8,7 +8,7 @@ use App\Models\Retailer;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class RetailerWtihProductSeeder extends Seeder
+class RetailerWithProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.

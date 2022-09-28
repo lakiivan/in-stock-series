@@ -2,34 +2,34 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Clients\Target;
+use App\Clients\BestBuy;
+use Illuminate\Support\Str;
+use Facades\App\Clients\ClientFactory;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Database\Eloquent\Model;
+use GuzzleHttp\Exception\ClientException;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Stock extends Model
 {
     protected $table = 'stocks';
 
     protected $casts = [
-    'in_stock' => 'boolean'
+        'in_stock' => 'boolean'
     ];
 
 
     public function track()
     {
-        // Hit an API endpoint for the associated reatailer
-        if ($this->retailer->name === 'Best Buy') {
-            //dd($results);
+        $status = $this->retailer
+            ->client()
+            ->checkAvailability($this);
 
-            // Fetch the up-to-date details for he item
-            $results = Http::get('http://foo.test')->json();
-
-            // And then refresh the curretn sotck record
-            $this->update([
-                'in_stock' => $results['available'],
-                'price' => $results['price']
-            ]);
-        }
+        $this->update([
+            'in_stock' => $status->available,
+            'price' => $status->price
+        ]);
     }
 
     public function retailer()
