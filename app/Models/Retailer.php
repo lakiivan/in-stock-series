@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Product;
 use Facades\App\Clients\ClientFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Retailer extends Model
 {
-
     public function addStock(Product $product, Stock $stock)
     {
         $stock->product_id = $product->id;
@@ -18,7 +17,7 @@ class Retailer extends Model
 
     public function stock()
     {
-        return $this->hasMany(Stock::class);   
+        return $this->hasMany(Stock::class);
     }
 
     public function client()

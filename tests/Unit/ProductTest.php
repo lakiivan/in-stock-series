@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use Tests\TestCase;
 use App\Models\Stock;
@@ -23,7 +23,7 @@ class ProductTest extends TestCase
 
         $bestBuy = Retailer::create(['name' => 'Best Buy']);
 
-        $this->assertFalse($switch->in_stock());
+        $this->assertFalse($switch->inStock());
         //$bestBuy->haveSttock($swtich);
 
         $stock = new Stock([
@@ -35,6 +35,6 @@ class ProductTest extends TestCase
 
         $bestBuy->addStock($switch, $stock);
 
-        $this->assertTrue($switch->in_stock());
+        $this->assertTrue($switch->inStock());
     }
 }

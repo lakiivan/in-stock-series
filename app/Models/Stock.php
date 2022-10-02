@@ -2,14 +2,7 @@
 
 namespace App\Models;
 
-use App\Clients\Target;
-use App\Clients\BestBuy;
-use Illuminate\Support\Str;
-use Facades\App\Clients\ClientFactory;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Database\Eloquent\Model;
-use GuzzleHttp\Exception\ClientException;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Stock extends Model
 {
@@ -18,7 +11,6 @@ class Stock extends Model
     protected $casts = [
         'in_stock' => 'boolean'
     ];
-
 
     public function track()
     {

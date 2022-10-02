@@ -2,7 +2,6 @@
 
 namespace App\Clients;
 
-use App\Clients\StockStatus;
 use App\Models\Stock;
 
 interface Client
